@@ -1,5 +1,5 @@
 const express = require('express');
-require('dotenv/types').config();
+require('dotenv').config();
 let cors = require('cors');
 const app = express();
 let axios = require('axios');
