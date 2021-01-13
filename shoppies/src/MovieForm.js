@@ -1,13 +1,18 @@
 import  {Component} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import SearchResults from './SearchResults';
+
 axios.defaults.baseURL = 'http://localhost:5000';
+
 
 export default class MovieForm extends Component {
     constructor(){
         super();
         this.state=({
-            searchQuery: ""
+            searchQuery: "",
+            searchResults:[],
+            searched: false
         });
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -15,12 +20,14 @@ export default class MovieForm extends Component {
     }
     async handleSubmit(event) {
         event.preventDefault();
-        // let data = new FormData(event.target);
-        // console.log(this.state.searchQuery);
         await axios.get('/getMovies',
         { params: { movie: this.state.searchQuery }})
         .then(res =>{
-            console.log(res);
+            console.log(res.data);
+            this.setState({
+                searchResults: res.data,
+                searched:true
+            })
         });
     }
 
@@ -31,6 +38,14 @@ export default class MovieForm extends Component {
     }
 
     render(){
+        let searched = this.state.searched;
+        const RenderResults = () =>{
+            if(searched){
+                return <SearchResults results={this.state.searchResults}/>
+            } else{
+            return <h1>No Results</h1>
+            }
+        }
         return (
             <div>
                 <form  onSubmit={this.handleSubmit}>
@@ -43,7 +58,8 @@ export default class MovieForm extends Component {
                         value={this.state.searchQuery}
                     />
                     <button>Submit</button> 
-                    <h2>{this.state.searchQuery}</h2>
+                    <RenderResults/>
+                    
                 </form>
             </div>
         )
