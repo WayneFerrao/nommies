@@ -23,7 +23,6 @@ export default class MovieForm extends Component {
         await axios.get('/getMovies',
         { params: { movie: this.state.searchQuery }})
         .then(res =>{
-            console.log(res.data);
             this.setState({
                 searchResults: res.data,
                 searched:true

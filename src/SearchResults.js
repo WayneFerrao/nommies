@@ -22,12 +22,12 @@ export default class SearchResults extends Component {
     render(){
         let results = this.props.results;
         console.log(results);
-        if(results.length!=0){
+        if(results.length!==0){
             return(
                 <div>
                     {results.map(result =>{
                         let source = result.Poster;
-                        if(result.Poster=="N/A"){
+                        if(result.Poster==="N/A"){
                             source = Placeholder;
                         }
                         return(

@@ -3,16 +3,14 @@ require('dotenv').config();
 let cors = require('cors');
 const app = express();
 let axios = require('axios');
-
 app.use(cors());
 let API_KEY = process.env.MOVIE_API_KEY;
-app.get('/', (req, res) => {
-    res.json({"BOIII": "YUHHH"});
-});
+axios.defaults.baseURL = `http://www.omdbapi.com`;
+
 
 app.get('/getMovies', (req, res)=> {
     let title = req.query.movie;
-    axios.get(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${title}`)
+    axios.get(`?apikey=${API_KEY}&s=${title}`)
     .then(response =>{
         let refined = response.data.Search.filter(result =>result.Type == "movie")
         res.json(refined);
@@ -23,12 +21,12 @@ app.get('/getMovies', (req, res)=> {
 
 if (process.env.NODE_ENV === 'production') {
     // Express will serve up production assets
-    app.use(express.static('client/build'));
+    app.use(express.static('build'));
 
     // Express serve up index.html file if it doesn't recognize route
     const path = require('path');
     app.get('/*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+        res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 
     });
 
