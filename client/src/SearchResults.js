@@ -48,7 +48,11 @@ const CC = styled.div`
 const NomButton = styled.button`
     display:inline-block;
     font-size: 15px;
-    padding: 0;
+    margin-bottom: 5%;
+    float: center;
+    margin-left: 35%;
+    // margin: 0 auto;
+    text-align:center;
 `;
 
 export default class SearchResults extends Component {
@@ -81,8 +85,9 @@ export default class SearchResults extends Component {
                                         <Description>
                                             <Title>{result.Title}</Title>
                                             <MovieDate >2015</MovieDate>
-                                        <NomButton> Nominate</NomButton>
                                         </Description>
+                                        <NomButton> Nominate</NomButton>
+
 
                                     </CC>
                             </Nominee>
