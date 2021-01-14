@@ -16,12 +16,25 @@ const NomContainer = styled.div`
 export default class Nominations extends Component {
     constructor(props){
         super(props);
+        console.log("WWOOWOWO");
+        console.log(this.props.nominations[0]);
     }
     render(){
+        let nominations = this.props.nominations;
         return(
             <Container>
                 <NomContainer>
                     Nominations:
+                    {nominations.map((nom, index) =>{
+                        return(
+                            <div>
+                                <h2 key={index}>
+                                    {nom.Title}
+                                </h2>
+                                <button onClick={()=>{this.props.removeNomination(nom)}}> Remove </button>
+                            </div>
+                        )    
+                    })}
                 </NomContainer>
             </Container>
         );

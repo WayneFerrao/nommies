@@ -22,6 +22,8 @@ function App() {
   const [searchQuery, setsearchQuery] = useState("");
   const [searchResults, setsearchResults] = useState([]);
   const [searched, setSearched] = useState(false);
+  const [nominations, setNominations] = useState([]);
+
 
   async function handleSubmit(event){
     event.preventDefault();
@@ -37,9 +39,26 @@ function App() {
         setsearchQuery(value);
   };
 
+  function addNomination(nominee){
+    const updateArray = [...nominations, nominee];
+    setNominations(updateArray);
+  };
+
+  function removeNomination(nominee){
+    const updateArray = [...nominations];
+    let nom = nominations.indexOf(nominee);
+    updateArray.splice(nom, 1);
+    console.log(nominations);
+    setNominations(updateArray);
+  };
+
   const RenderResults = () =>{
     if(searched){
-        return <SearchResults results={searchResults}/>
+        return <SearchResults 
+                addNomination={addNomination} 
+                nominations={nominations} 
+                results={searchResults}
+                />
     } else{
     return <h1>No Results</h1>
     }
@@ -47,7 +66,7 @@ function App() {
   return (
     <div>
      <Title>Nommies</Title>
-     <Nominations/>
+     <Nominations nominations={nominations} removeNomination={removeNomination}/>
      <MovieForm 
       handleSubmit = {handleSubmit} 
       handleChange = {handleChange}

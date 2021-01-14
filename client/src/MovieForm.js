@@ -15,28 +15,7 @@ export default class MovieForm extends Component {
             searchResults:[],
             searched: false
         });
-        // this.handleSubmit = this.handleSubmit.bind(this);
-        // this.handleChange = this.handleChange.bind(this);
-
     }
-   
-    // async handleSubmit(event) {
-    //     event.preventDefault();
-    //     await axios.get('/getMovies',
-    //     { params: { movie: this.state.searchQuery }})
-    //     .then(res =>{
-    //         this.setState({
-    //             searchResults: res.data,
-    //             searched:true
-    //         })
-    //     });
-    // }
-
-    // async handleChange(value) {
-    //     this.setState({
-    //         searchQuery:value
-    //     });
-    // }
 
     render(){
         let searched = this.state.searched;
@@ -53,7 +32,6 @@ export default class MovieForm extends Component {
                         value={this.props.searchQuery}
                     />
                     <button>Submit</button> 
-                    {/* <RenderResults/> */}
                     
                 </form>
             </FormContainer>

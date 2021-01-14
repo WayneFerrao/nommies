@@ -62,7 +62,6 @@ export default class SearchResults extends Component {
     }
     render(){
         let results = this.props.results;
-        console.log(results);
         if(results === "Movie not found!"){
             return(
                 <div>
@@ -78,6 +77,15 @@ export default class SearchResults extends Component {
                         if(result.Poster==="N/A"){
                             source = Placeholder;
                         }
+                        let seen = this.props.nominations.map(nom => nom.imdbID);
+                        const NominationButton = () =>{
+
+                            if(seen.includes(result.imdbID)){
+                                return <NomButton onClick={()=>{this.props.addNomination(result)}} disabled> Nominate</NomButton>
+                            }else{
+                                return <NomButton onClick={()=>{this.props.addNomination(result)}}> Nominate</NomButton>
+                            }
+                        }
                         return(
                             <Nominee>
                                     <img src={source} height='350px' width='100%' object-fit='cover'/>
@@ -86,7 +94,7 @@ export default class SearchResults extends Component {
                                             <Title>{result.Title}</Title>
                                             <MovieDate >2015</MovieDate>
                                         </Description>
-                                        <NomButton> Nominate</NomButton>
+                                        <NominationButton/>
 
 
                                     </CC>
