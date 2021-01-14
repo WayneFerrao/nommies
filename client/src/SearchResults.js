@@ -1,18 +1,55 @@
 import  {Component} from 'react';
 import styled from 'styled-components';
 import Placeholder from './assets/movie_placeholder.png';
+import { Card, Icon, Image, Button } from 'semantic-ui-react'
 
-const Result =styled.div`
-    display: flex;
-    flex-direction: row;
-    margin-left: 2%;
+const ResultsBox = styled.div`
+    display: flex; 
+    -webkit-flex-flow: row wrap; 
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    flex-grow: 1;
+    height:100%;
+
+`;
+
+const Nominee = styled.div`
+    height:100%
+    flex-grow: 1;
+    margin-left: 3.5%;
+    margin-right: 1%;
+    border: 2px solid #999;
+    box-shadow:  3px 5px 6px #ccc;
+    border-radius: 7px;
+    text-align: left;
     margin-top: 2%;
+`;
+
+const Description =styled.div`
+    height: 100%;    
+    width: 300px;
 `;
 const Title = styled.h1`
     margin:0;
+    font-size: 20px;
+    margin-left:2%;
     padding:0;
 `;
+const MovieDate = styled.h4`
+    color: #888;
+    margin-top: 1%;
+    margin-left: 2%;
+`;
 
+const CC = styled.div`
+    display: block;
+    justify-content: space-between;
+`;
+const NomButton = styled.button`
+    display:inline-block;
+    font-size: 15px;
+    padding: 0;
+`;
 
 export default class SearchResults extends Component {
 
@@ -22,25 +59,36 @@ export default class SearchResults extends Component {
     render(){
         let results = this.props.results;
         console.log(results);
-        if(results.length!==0){
+        if(results === "Movie not found!"){
             return(
                 <div>
-                    {results.map(result =>{
+                    <h1>Movie not found!!!</h1>
+                </div>
+            )
+        }
+        if(results.length!==0){
+            return(
+                <ResultsBox>
+                    {results.map((result, index) =>{
                         let source = result.Poster;
                         if(result.Poster==="N/A"){
                             source = Placeholder;
                         }
                         return(
-                            <Result>
-                                <img src={source} height={200}/>
-                                <div>
-                                    <Title>{result.Title}</Title>
-                                    <h2>{result.Year}</h2>
-                                </div>
-                            </Result>
+                            <Nominee>
+                                    <img src={source} height='350px' width='100%' object-fit='cover'/>
+                                    <CC>
+                                        <Description>
+                                            <Title>{result.Title}</Title>
+                                            <MovieDate >2015</MovieDate>
+                                        <NomButton> Nominate</NomButton>
+                                        </Description>
+
+                                    </CC>
+                            </Nominee>
                         )
                     })}
-                </div>
+                </ResultsBox>
             )
         }
     }

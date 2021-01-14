@@ -3,9 +3,11 @@ import axios from 'axios';
 import styled from 'styled-components';
 import SearchResults from './SearchResults';
 
-axios.defaults.baseURL = 'https://nommies.herokuapp.com/';
+axios.defaults.baseURL = 'http://localhost:5000';
 
-
+const FormContainer = styled.div`
+    text-align: center;
+`;
 export default class MovieForm extends Component {
     constructor(){
         super();
@@ -46,7 +48,7 @@ export default class MovieForm extends Component {
             }
         }
         return (
-            <div>
+            <FormContainer>
                 <form  onSubmit={this.handleSubmit}>
                     <label>Search your fave movies here:</label>
                     <input 
@@ -60,7 +62,7 @@ export default class MovieForm extends Component {
                     <RenderResults/>
                     
                 </form>
-            </div>
+            </FormContainer>
         )
     }
 }
