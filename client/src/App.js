@@ -30,9 +30,20 @@ function App() {
   const [open, setOpen] = React.useState(false);
   const [error, setError] = React.useState(false);
 
+  React.useEffect(() => {
+    console.log(localStorage.get)
+    const savedNominations = JSON.parse(localStorage.getItem("nominations"))
+    setNominations(savedNominations)
+  }, []);
+
+  React.useEffect(() => {
+    localStorage.setItem("nominations", JSON.stringify(nominations))
+  }, [nominations])
+
 
   async function handleSubmit(event){
     event.preventDefault();
+    console.log(event)
     await axios.get('/getMovies',
     { params: { movie: searchQuery }})
     .then(res =>{

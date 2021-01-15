@@ -1,6 +1,7 @@
-import  {Component} from 'react';
-import styled from 'styled-components';
+import React, {Component} from 'react';
+import styled, {keyframes} from 'styled-components';
 import Placeholder from './assets/movie_placeholder.png';
+import './Button.css';
 
 const ResultsBox = styled.div`
     display: flex; 
@@ -57,13 +58,22 @@ export default class SearchResults extends Component {
     constructor(props){
         super(props);
     }
+
     render(){
+        console.log(this.props);
         let results = this.props.results;
         if(results === "Movie not found!"){
             return(
                 <div>
-                    <h1>Movie not found!!!</h1>
+                    <h1>Movie not found!</h1>
                 </div>
+            )
+        }
+        console.log(results);
+        if(results.Error){
+            return(<ResultsBox>
+                <h3> No results!</h3>
+            </ResultsBox>
             )
         }
         if(results.length!==0){
@@ -103,5 +113,6 @@ export default class SearchResults extends Component {
                 </ResultsBox>
             )
         }
+        
     }
 };

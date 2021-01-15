@@ -15,7 +15,6 @@ const NomContainer = styled.div`
     display: flex;
     flex-flow: row;
     padding: 1%;
-    // height: 300px;
 `;
 const Nomination = styled.div`
     height:100%
@@ -28,27 +27,43 @@ const Nomination = styled.div`
     text-align: center;
 `;
 
-const RemoveButton =styled.button`
-    margin-bottom: 3%;
+const RemoveButton =styled.div`
+    border: 1px solid #cf000f;
+    border-radius: 15px;
+    color: #cf000f;
+    width: fit-content;
+    margin:auto;
+    font-family: "Open Sans", serif;    
+
+    font-size: 1.1em;
+    padding:3% 7%;
+    cursor: pointer;
+    margin-bottom: 5%;
+    &:hover{
+        font-size: 1.2em;
+        background-color:#da4f49;
+        color: white;
+      }
 `;
 
 const NominationTitle = styled.h3`
     font-family: "Fraunces", serif;    
+    margin-bottom: 1%;
 `;
 const Subtitle = styled.h4`
     text-align:center;
     font-family: "Fraunces", serif;    
-    font-weight: 200;
+
+    color: #555;
 `;
 
 export default class Nominations extends Component {
     constructor(props){
         super(props);
-        console.log("WWOOWOWO");
-        console.log(this.props.nominations[0]);
     }
     render(){
         let nominations = this.props.nominations;
+        console.log(nominations);
         return(
             <Container>
                 <Subtitle>Your Nominations</Subtitle>
