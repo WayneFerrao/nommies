@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Input from '@material-ui/core/Input';
 import './Button.css';
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'https://nommies.herokuapp.com/';
 
 const FormContainer = styled.div`
     text-align: center;
