@@ -1,17 +1,21 @@
-import logo from './logo.svg';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import MovieForm from './MovieForm';
 import Nominations from './Nominations';
 import styled from 'styled-components';
 import axios from 'axios';
 import SearchResults from './SearchResults';
-
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import MuiAlert from '@material-ui/lab/Alert';
 
 let Title = styled.h1`
   margin-left: 5%;
   margin-top: 2%;
   font-family: "Fraunces", serif;
+  font-weight: 600;
   font-size: 45px;
+  color: #95bf47;
   @media (max-width: 400px) {
     text-align: center;
     margin: 0;
@@ -23,6 +27,8 @@ function App() {
   const [searchResults, setsearchResults] = useState([]);
   const [searched, setSearched] = useState(false);
   const [nominations, setNominations] = useState([]);
+  const [open, setOpen] = React.useState(false);
+  const [error, setError] = React.useState(false);
 
 
   async function handleSubmit(event){
@@ -40,7 +46,12 @@ function App() {
   };
 
   function addNomination(nominee){
+    if(nominations.length===5){
+      setError(true);
+      return null;
+    }
     const updateArray = [...nominations, nominee];
+    setOpen(true);
     setNominations(updateArray);
   };
 
@@ -51,6 +62,14 @@ function App() {
     console.log(nominations);
     setNominations(updateArray);
   };
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+    setError(false);
+  };
 
   const RenderResults = () =>{
     if(searched){
@@ -59,8 +78,8 @@ function App() {
                 nominations={nominations} 
                 results={searchResults}
                 />
-    } else{
-    return <h1>No Results</h1>
+    } else {
+    return null;
     }
   }
   return (
@@ -72,6 +91,50 @@ function App() {
       handleChange = {handleChange}
       searchQuery = {searchQuery}/>
      <RenderResults/>
+     <Snackbar 
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={open} 
+        autoHideDuration={3000} 
+        onClose={handleClose}
+
+        action={
+          <React.Fragment>
+            <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </React.Fragment>
+        }
+        >
+        <MuiAlert onClose={handleClose} severity="success">
+          Movie Nominated!
+        </MuiAlert>
+        
+      </Snackbar>
+      <Snackbar 
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={error} 
+        autoHideDuration={3000} 
+        onClose={handleClose}
+
+        action={
+          <React.Fragment>
+            <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </React.Fragment>
+        }
+        >
+        <MuiAlert onClose={handleClose} severity="error">
+          5 movie limit reached! Remove a nomination to add a new one.
+        </MuiAlert>
+      </Snackbar>
+     
     </div>
   );
 }

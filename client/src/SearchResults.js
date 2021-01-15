@@ -1,7 +1,6 @@
 import  {Component} from 'react';
 import styled from 'styled-components';
 import Placeholder from './assets/movie_placeholder.png';
-import { Card, Icon, Image, Button } from 'semantic-ui-react'
 
 const ResultsBox = styled.div`
     display: flex; 
@@ -10,7 +9,7 @@ const ResultsBox = styled.div`
     flex-flow: row wrap;
     flex-grow: 1;
     height:100%;
-
+    padding-bottom: 2%;
 `;
 
 const Nominee = styled.div`
@@ -42,8 +41,8 @@ const MovieDate = styled.h4`
 `;
 
 const CC = styled.div`
-    display: block;
-    justify-content: space-between;
+    // display: block;
+    // justify-content: space-between;
 `;
 const NomButton = styled.button`
     display:inline-block;
@@ -54,9 +53,7 @@ const NomButton = styled.button`
     // margin: 0 auto;
     text-align:center;
 `;
-
 export default class SearchResults extends Component {
-
     constructor(props){
         super(props);
     }
@@ -77,10 +74,14 @@ export default class SearchResults extends Component {
                         if(result.Poster==="N/A"){
                             source = Placeholder;
                         }
-                        let seen = this.props.nominations.map(nom => nom.imdbID);
+                        let seen = false;
+                        this.props.nominations.forEach(nom =>{
+                            if(nom.imdbID ==result.imdbID){
+                                seen = true;
+                            }
+                        });
                         const NominationButton = () =>{
-
-                            if(seen.includes(result.imdbID)){
+                            if(seen){
                                 return <NomButton onClick={()=>{this.props.addNomination(result)}} disabled> Nominate</NomButton>
                             }else{
                                 return <NomButton onClick={()=>{this.props.addNomination(result)}}> Nominate</NomButton>
@@ -88,16 +89,14 @@ export default class SearchResults extends Component {
                         }
                         return(
                             <Nominee>
-                                    <img src={source} height='350px' width='100%' object-fit='cover'/>
-                                    <CC>
-                                        <Description>
-                                            <Title>{result.Title}</Title>
-                                            <MovieDate >2015</MovieDate>
-                                        </Description>
-                                        <NominationButton/>
-
-
-                                    </CC>
+                                <img src={source}  width='100%' object-fit='cover'/>
+                                <CC>
+                                    <Description>
+                                        <Title>{result.Title}</Title>
+                                        <MovieDate >2015</MovieDate>
+                                    </Description>
+                                    <NominationButton/>
+                                </CC>
                             </Nominee>
                         )
                     })}

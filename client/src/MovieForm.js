@@ -1,11 +1,14 @@
 import  {Component} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-
 axios.defaults.baseURL = 'http://localhost:5000';
 
 const FormContainer = styled.div`
     text-align: center;
+`;
+const Instruction = styled.label`
+    font-family: "Fraunces", serif;
+    font-weight: 200;
 `;
 export default class MovieForm extends Component {
     constructor(props){
@@ -16,14 +19,13 @@ export default class MovieForm extends Component {
             searched: false
         });
     }
-
     render(){
         let searched = this.state.searched;
        
         return (
             <FormContainer>
                 <form  onSubmit={this.props.handleSubmit}>
-                    <label>Search your fave movies here:</label>
+                    <Instruction>Search your fave movies here:</Instruction>
                     <input 
                         type="search" 
                         id="movies" 
@@ -32,7 +34,6 @@ export default class MovieForm extends Component {
                         value={this.props.searchQuery}
                     />
                     <button>Submit</button> 
-                    
                 </form>
             </FormContainer>
         )
