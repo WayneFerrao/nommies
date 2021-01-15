@@ -18,22 +18,26 @@ const Nominee = styled.div`
     flex-grow: 1;
     margin-left: 3.5%;
     margin-right: 1%;
-    border: 2px solid #999;
-    box-shadow:  3px 5px 6px #ccc;
+    // border: 2px solid #d8b690;
+    // padding:0.5%;
+    box-shadow: -7px 6px 8px 4px #dbd2c9;
     border-radius: 7px;
     text-align: left;
     margin-top: 2%;
+    background-color: #fff;
 `;
 
 const Description =styled.div`
     height: 100%;    
     width: 300px;
+    color: #083a40
 `;
 const Title = styled.h1`
     margin:0;
     font-size: 20px;
     margin-left:2%;
     padding:0;
+    color: #083a40;
 `;
 const MovieDate = styled.h4`
     color: #888;
@@ -46,13 +50,31 @@ const CC = styled.div`
     // justify-content: space-between;
 `;
 const NomButton = styled.button`
-    display:inline-block;
-    font-size: 15px;
+    border: 1px solid #2eb863;
+    border-radius: 15px;
+    color: #fff;
+    width: fit-content;
+    margin:auto;
+    font-family: "Quicksand", serif;
+    font-weight: 700;   
+    background-color: #2eb863;
+    font-size: 1.1em;
+    padding:3% 7%;
+    cursor: pointer;
     margin-bottom: 5%;
-    float: center;
-    margin-left: 35%;
-    // margin: 0 auto;
-    text-align:center;
+    padding-bottom: auto;
+    opacity: 0.5;
+    transition: opacity 0.1s;
+    &:hover{
+        opacity: 1;
+    }
+    margin-bottom: 5%;
+    margin-left: 30%;
+`;
+const NomPic = styled.img`
+    width:100%;
+    object-fit: cover;
+    border-radius: 5px;
 `;
 export default class SearchResults extends Component {
     constructor(props){
@@ -99,7 +121,7 @@ export default class SearchResults extends Component {
                         }
                         return(
                             <Nominee>
-                                <img src={source}  width='100%' object-fit='cover'/>
+                                <NomPic src={source}    />
                                 <CC>
                                     <Description>
                                         <Title>{result.Title}</Title>
@@ -112,7 +134,6 @@ export default class SearchResults extends Component {
                     })}
                 </ResultsBox>
             )
-        }
-        
+        }   
     }
 };

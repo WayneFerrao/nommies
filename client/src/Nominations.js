@@ -8,10 +8,11 @@ const Container = styled.div`
     border-radius: 5px;
 `;
 const NomContainer = styled.div`
-    border: 2px solid #999;
-    border-radius: 5px;
+    border: 2px solid #d8b690;
+    border-radius: 7px;
     width: 70%;
     margin: 0 auto;
+    background-color: #f8d1a6;
     display: flex;
     flex-flow: row;
     padding: 1%;
@@ -22,39 +23,47 @@ const Nomination = styled.div`
     margin-left: 1%;
     margin-right: 1%;
     width: 20%;
-    box-shadow:  3px 5px 6px #ccc;
+    background-color: white;
+    box-shadow:  3px 5px 6px #aaa;
     border-radius: 7px;
     text-align: center;
 `;
 
 const RemoveButton =styled.div`
-    border: 1px solid #cf000f;
+    border: 1px solid #d8b690;
     border-radius: 15px;
-    color: #cf000f;
+    color: #ed695f;
     width: fit-content;
     margin:auto;
-    font-family: "Open Sans", serif;    
+    font-family: "Quicksand", serif;
+    font-weight: 600;   
 
     font-size: 1.1em;
     padding:3% 7%;
     cursor: pointer;
     margin-bottom: 5%;
+    transition: background-color 0.25s;
     &:hover{
-        font-size: 1.2em;
-        background-color:#da4f49;
+        background-color:#fa9a63;
         color: white;
       }
 `;
 
 const NominationTitle = styled.h3`
-    font-family: "Fraunces", serif;    
+    font-family: "Quicksand", serif;    
     margin-bottom: 1%;
 `;
 const Subtitle = styled.h4`
     text-align:center;
-    font-family: "Fraunces", serif;    
-
-    color: #555;
+    font-family: "Quicksand", serif;    
+    font-size: 1.3em;
+    color: #000;
+`;
+const NomPic = styled.img`
+    width: 35%;
+    margin-top: 5%;
+    border-radius: 5px;
+    object-fit; cover;
 `;
 
 export default class Nominations extends Component {
@@ -71,7 +80,7 @@ export default class Nominations extends Component {
                     {nominations.map((nom, index) =>{
                         return(
                             <Nomination>
-                                <img src={nom.Poster}  width='35%' object-fit='cover'/>
+                                <NomPic src={nom.Poster}   padding-top="10px" />
                                 <NominationTitle key={index}>
                                     {nom.Title}
                                 </NominationTitle>

@@ -9,13 +9,20 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import MuiAlert from '@material-ui/lab/Alert';
 
+let MainContainer = styled.div`
+  background-color: #f6efe5
+  // height: 100vh;
+`;
 let Title = styled.h1`
-  margin-left: 5%;
-  margin-top: 2%;
-  font-family: "Fraunces", serif;
-  font-weight: 600;
+  padding-left: 3%;
+  padding-bottom:1%;
+  padding-top:1%;
+  font-family: "Quicksand", serif;
+  font-weight: 700;
   font-size: 45px;
-  color: #95bf47;
+  background-color: #fff;
+  color: #f96123;
+
   @media (max-width: 400px) {
     text-align: center;
     margin: 0;
@@ -40,7 +47,7 @@ function App() {
     localStorage.setItem("nominations", JSON.stringify(nominations))
   }, [nominations])
 
-
+  document.body.style = 'background: #f6efe5';
   async function handleSubmit(event){
     event.preventDefault();
     console.log(event)
@@ -94,7 +101,7 @@ function App() {
     }
   }
   return (
-    <div>
+    <MainContainer>
      <Title>Nommies</Title>
      <Nominations nominations={nominations} removeNomination={removeNomination}/>
      <MovieForm 
@@ -146,7 +153,7 @@ function App() {
         </MuiAlert>
       </Snackbar>
      
-    </div>
+    </MainContainer>
   );
 }
 

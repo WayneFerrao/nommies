@@ -30,7 +30,7 @@ a {
   left: 0;
   display: block;
   border-radius: 28px;
-  background:#95bf47;
+  background:#f5bd98;
   width: 56px;
   height: 56px;
   transition: all 0.3s ease;
@@ -39,6 +39,7 @@ a {
   position: relative;
   color:#333;
   font-size: 16px;
+  font-family: Quicksand;
   line-height: 18px;
   font-weight: 900;
   letter-spacing: 0.15em;
@@ -59,7 +60,7 @@ a {
 }
 .cta:hover:before {
   width: 100%;
-  background:#95bf47;
+  background:#f5bd98;
 
 }
 .cta:hover svg {
@@ -79,7 +80,7 @@ a {
 }
 
 .form__field {
-  font-family: inherit;
+  font-family: Quicksand;
   width: 100%;
   border: 0;
   border-bottom: 2px solid #9b9b9b;
@@ -112,7 +113,7 @@ a {
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
-  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  border-image: linear-gradient(to right, #fa9a63, #fcbf81);
   border-image-slice: 1;
 }
 .form__field:focus ~ .form__label {
@@ -121,7 +122,7 @@ a {
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: #11998e;
+  color: #fa9a63;
   font-weight: 700;
 }
 
