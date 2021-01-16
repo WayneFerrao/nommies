@@ -38,7 +38,6 @@ function App() {
   const [error, setError] = React.useState(false);
 
   React.useEffect(() => {
-    console.log(localStorage.get)
     const savedNominations = JSON.parse(localStorage.getItem("nominations"))
     setNominations(savedNominations)
   }, []);
@@ -50,7 +49,6 @@ function App() {
   document.body.style = 'background: #f6efe5';
   async function handleSubmit(event){
     event.preventDefault();
-    console.log(event)
     await axios.get('/getMovies',
     { params: { movie: searchQuery }})
     .then(res =>{
@@ -63,7 +61,17 @@ function App() {
         setsearchQuery(value);
   };
 
-  function addNomination(nominee){
+  async function addNomination(nominee){
+    console.log(nominee.imdbID);
+    console.log(nominations);
+
+    await nominations.forEach(nom => {
+      console.log(nom.imdbID);  
+      if(nom.imdbID ===nominee.imdbID){
+        console.log("yeah??");
+        return null;
+      }
+    });
     if(nominations.length===5){
       setError(true);
       return null;

@@ -20,7 +20,11 @@ const Nominee = styled.div`
     margin-right: 1%;
     // border: 2px solid #d8b690;
     // padding:0.5%;
-    box-shadow: -7px 6px 8px 4px #dbd2c9;
+    box-shadow: none;
+    transition: box-shadow 0.25s;
+    &:hover{
+        box-shadow: -7px 6px 8px 4px #dbd2c9;
+    }
     border-radius: 7px;
     text-align: left;
     margin-top: 2%;
@@ -60,16 +64,21 @@ const NomButton = styled.button`
     background-color: #2eb863;
     font-size: 1.1em;
     padding:3% 7%;
-    cursor: pointer;
+    cursor:pointer;
+    outline:none;
     margin-bottom: 5%;
     padding-bottom: auto;
     opacity: 0.5;
     transition: opacity 0.1s;
-    &:hover{
         opacity: 1;
     }
     margin-bottom: 5%;
     margin-left: 30%;
+`;
+const DisabledNom = styled(NomButton)`
+    &:hover{
+        opacity: 0.5;
+    }
 `;
 const NomPic = styled.img`
     width:100%;
@@ -82,7 +91,6 @@ export default class SearchResults extends Component {
     }
 
     render(){
-        console.log(this.props);
         let results = this.props.results;
         if(results === "Movie not found!"){
             return(
@@ -91,7 +99,6 @@ export default class SearchResults extends Component {
                 </div>
             )
         }
-        console.log(results);
         if(results.Error){
             return(<ResultsBox>
                 <h3> No results!</h3>
@@ -114,7 +121,7 @@ export default class SearchResults extends Component {
                         });
                         const NominationButton = () =>{
                             if(seen){
-                                return <NomButton onClick={()=>{this.props.addNomination(result)}} disabled> Nominate</NomButton>
+                                return <DisabledNom style={{ cursor: "not-allowed"}}> Nominate</DisabledNom>
                             }else{
                                 return <NomButton onClick={()=>{this.props.addNomination(result)}}> Nominate</NomButton>
                             }

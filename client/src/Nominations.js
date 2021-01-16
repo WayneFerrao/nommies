@@ -10,7 +10,7 @@ const Container = styled.div`
 const NomContainer = styled.div`
     border: 2px solid #d8b690;
     border-radius: 7px;
-    width: 70%;
+    width: 75%;
     margin: 0 auto;
     background-color: #f8d1a6;
     display: flex;
@@ -20,8 +20,8 @@ const NomContainer = styled.div`
 const Nomination = styled.div`
     height:100%
     flex-grow: 1;
-    margin-left: 1%;
-    margin-right: 1%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
     width: 20%;
     background-color: white;
     box-shadow:  3px 5px 6px #aaa;
@@ -60,7 +60,7 @@ const Subtitle = styled.h4`
     color: #000;
 `;
 const NomPic = styled.img`
-    width: 35%;
+    width: 50%;
     margin-top: 5%;
     border-radius: 5px;
     object-fit; cover;
@@ -72,7 +72,6 @@ export default class Nominations extends Component {
     }
     render(){
         let nominations = this.props.nominations;
-        console.log(nominations);
         return(
             <Container>
                 <Subtitle>Your Nominations</Subtitle>

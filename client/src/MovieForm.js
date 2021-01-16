@@ -27,7 +27,7 @@ export default class MovieForm extends Component {
         return (
             <FormContainer>
                 <form  onSubmit={this.props.handleSubmit}>
-                    <Instruction>Search your fave movies here:</Instruction>
+                    <Instruction>Nominate up to 5 of your favourite movies. Start your search below</Instruction>
                     <Row>
                     <div class="form__group field">
                         <input type="search" class="form__field" placeholder="Movie" name="movies" id='movies' required 
