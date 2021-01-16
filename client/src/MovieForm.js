@@ -1,7 +1,6 @@
 import  {Component} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import Input from '@material-ui/core/Input';
 import './Button.css';
 axios.defaults.baseURL = 'https://nommies.herokuapp.com/';
 
@@ -20,9 +19,7 @@ const Row = styled.div`
     justify-content: center;
 `;
 export default class MovieForm extends Component {
-    constructor(props){
-        super(props);
-    }
+
     render(){
         return (
             <FormContainer>

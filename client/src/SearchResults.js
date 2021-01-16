@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import styled, {keyframes} from 'styled-components';
+import styled from 'styled-components';
 import Placeholder from './assets/movie_placeholder.png';
 import './Button.css';
 
@@ -86,9 +86,6 @@ const NomPic = styled.img`
     border-radius: 5px;
 `;
 export default class SearchResults extends Component {
-    constructor(props){
-        super(props);
-    }
 
     render(){
         let results = this.props.results;
@@ -127,7 +124,7 @@ export default class SearchResults extends Component {
                             }
                         }
                         return(
-                            <Nominee>
+                            <Nominee key={index}>
                                 <NomPic src={source}    />
                                 <CC>
                                     <Description>

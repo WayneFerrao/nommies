@@ -12,12 +12,7 @@ app.get('/getMovies', (req, res)=> {
     let title = req.query.movie;
     axios.get(`?apikey=${API_KEY}&s=${title}`)
     .then(response =>{
-        console.log('////////');
-        console.log(response.data);
-        console.log('////////');
-
         if(response.data.Error){
-            console.log("NOP");
             return res.json(response.data);
         }
         let refined = response.data.Search.filter(result =>result.Type == "movie")

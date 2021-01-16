@@ -38,11 +38,15 @@ function App() {
   const [error, setError] = React.useState(false);
 
   React.useEffect(() => {
-    const savedNominations = JSON.parse(localStorage.getItem("nominations"))
+    let savedNominations = JSON.parse(localStorage.getItem("nominations"))
+    if(savedNominations==null){
+      savedNominations = [];
+    }
     setNominations(savedNominations)
   }, []);
 
   React.useEffect(() => {
+   
     localStorage.setItem("nominations", JSON.stringify(nominations))
   }, [nominations])
 
@@ -62,13 +66,9 @@ function App() {
   };
 
   async function addNomination(nominee){
-    console.log(nominee.imdbID);
-    console.log(nominations);
 
     await nominations.forEach(nom => {
-      console.log(nom.imdbID);  
       if(nom.imdbID ===nominee.imdbID){
-        console.log("yeah??");
         return null;
       }
     });
@@ -85,7 +85,6 @@ function App() {
     const updateArray = [...nominations];
     let nom = nominations.indexOf(nominee);
     updateArray.splice(nom, 1);
-    console.log(nominations);
     setNominations(updateArray);
   };
   const handleClose = (event, reason) => {

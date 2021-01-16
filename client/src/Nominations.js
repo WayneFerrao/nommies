@@ -1,6 +1,5 @@
 import  {Component} from 'react';
 import styled from 'styled-components';
-import { Card, Icon, Image, Button } from 'semantic-ui-react'
 
 const Container = styled.div`
     margin-bottom: 2%;
@@ -67,9 +66,6 @@ const NomPic = styled.img`
 `;
 
 export default class Nominations extends Component {
-    constructor(props){
-        super(props);
-    }
     render(){
         let nominations = this.props.nominations;
         return(
@@ -78,7 +74,7 @@ export default class Nominations extends Component {
                 <NomContainer>
                     {nominations.map((nom, index) =>{
                         return(
-                            <Nomination>
+                            <Nomination key={index}>
                                 <NomPic src={nom.Poster}   padding-top="10px" />
                                 <NominationTitle key={index}>
                                     {nom.Title}
